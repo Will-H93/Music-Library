@@ -30,11 +30,11 @@ const readArtist = async(_, res) => {
     db.end();
 };
 
-const artistId = async(req, res) => {
+const readId = async(req, res) => {
     const db = await getDb();
-    const { id } = req.params;
+    const { artistId } = req.params;
     const [[artist]] = await db.query('SELECT * FROM Artist WHERE id = ?', [
-        id
+        artistId
     ]);
     if (artist) {
         res.status(200).json(artist); 
@@ -44,4 +44,28 @@ const artistId = async(req, res) => {
     db.end();
 };
 
-module.exports = { newArtist, readArtist, artistId }
+const update = async(req, res) => {
+    const db = await getDb();
+    const data = req.body;
+    const { artistId } = req.params;
+  
+    try {
+      const [
+        { affectedRows },
+      ] = await db.query('UPDATE Artist SET ? WHERE id = ?', [
+        data,
+        artistId
+        ]);
+  
+      if (!affectedRows) {
+        res.sendStatus(404);
+      } else {
+        res.status(200).send();
+      }
+    } catch (err) {
+      res.sendStatus(500);
+    }
+    db.end();
+};
+
+module.exports = { newArtist, readArtist, readId, update }
