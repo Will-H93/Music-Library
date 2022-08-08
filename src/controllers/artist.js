@@ -68,4 +68,19 @@ const update = async(req, res) => {
     db.end();
 };
 
-module.exports = { newArtist, readArtist, readId, update }
+const deleteFromArtist = async(req, res) => {
+    const db = await getDb();
+    const { artistId } = req.params;
+    const [ { affectedRows } ] = await db.query(`DELETE FROM Artist WHERE id = ?`, [
+        artistId
+    ]);
+
+    if (!affectedRows) {
+        res.sendStatus(404);
+    } else {
+        res.status(200).send();
+    }
+    db.end();
+};
+
+module.exports = { newArtist, readArtist, readId, update, deleteFromArtist }
