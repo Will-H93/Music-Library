@@ -71,7 +71,7 @@ describe('read album', () => {
         expect(res.body.length).to.equal(3);
 
         res.body.forEach((albumRecord) => {
-          const expected = albums.find((a) => a.name === albumRecord.name);
+          const expected = albums.find((a) => a.id === albumRecord.id);
           expect(albumRecord).to.deep.equal(expected);
         });
       });
