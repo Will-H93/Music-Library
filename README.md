@@ -25,7 +25,7 @@ The project implements RESTful routes and allows users to perform CRUD (Create, 
 - Run `npm start` to start the project
 - Run `npm test` to run the tests
 
-![Database schema](https://ibb.co/Z1xqrKx)
+![Database schema](https://i.ibb.co/Hpq5yYq/Screenshot-2022-08-13-at-13-37-57.png)
 
 ## Routes
 
