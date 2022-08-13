@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/Will-H93/Music-Library#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
     "chai": "^4.3.6",
     "dotenv": "^16.0.1",
     "eslint": "^8.21.0",

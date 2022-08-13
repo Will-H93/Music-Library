@@ -1,4 +1,3 @@
-// utils/create-database.js
 // require the promise version of mysql2
 const mysql = require('mysql2/promise');
 

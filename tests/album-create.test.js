@@ -1,4 +1,3 @@
-// tests/artist-create.js
 const { expect } = require('chai');
 const request = require('supertest');
 const getDb = require('../src/services/db');
