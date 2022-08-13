@@ -13,6 +13,7 @@ The project implements RESTful routes and allows users to perform CRUD (Create, 
 - Change in to repo directory
 - Install express - `npm i -S express`
 - Install nodemon as a dev dependency - `npm i -D nodemon` and add it to your package.json start script
+- Install mocha, chai and supertest as dev dependencies - `npm i -D mocha chai supertest` for Test Driven Development
 - Create a .env file and add local variables:
   - DB_PASSWORD
   - DB_NAME
@@ -23,6 +24,8 @@ The project implements RESTful routes and allows users to perform CRUD (Create, 
 - If you wan to run the tests create a .env.test file with the same environmental variables changing the DB_NAME variable.
 - Run `npm start` to start the project
 - Run `npm test` to run the tests
+
+![Database schema](https://ibb.co/Z1xqrKx)
 
 ## Routes
 
