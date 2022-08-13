@@ -19,7 +19,7 @@ describe('create artist', () => {
           name: 'Tame Impala',
           genre: 'rock',
         });
-        
+
         expect(res.status).to.equal(201);
 
         const [[artistEntries]] = await db.query(

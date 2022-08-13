@@ -4,62 +4,62 @@ const getDb = require('../src/services/db');
 const app = require('../src/app');
 
 describe('delete artist', () => {
-    let db;
-    let albums;
-  
-    beforeEach(async () => {
-      db = await getDb();
-      await Promise.all([
-        db.query('INSERT INTO Artist (name, genre) VALUES(?, ?)', [
-          'Tame Impala',
-          'rock',
-        ]),
-        db.query('INSERT INTO Artist (name, genre) VALUES(?, ?)', [
-          'Kylie Minogue',
-          'pop',
-        ]),
-        db.query('INSERT INTO Artist (name, genre) VALUES(?, ?)', [
-          'Dave Brubeck',
-          'jazz',
-        ]),
-      ]);
-  
-      const [[tame_impala]] = await db.query(
-        'SELECT id FROM Artist WHERE name=?', [
-          'Tame Impala'
-        ]);
-      const [[kylie]] = await db.query('SELECT id FROM Artist WHERE name=?', [
+  let db;
+  let albums;
+
+  beforeEach(async () => {
+    db = await getDb();
+    await Promise.all([
+      db.query('INSERT INTO Artist (name, genre) VALUES(?, ?)', [
+        'Tame Impala',
+        'rock',
+      ]),
+      db.query('INSERT INTO Artist (name, genre) VALUES(?, ?)', [
         'Kylie Minogue',
-      ]);
-      const [[dave]] = await db.query('SELECT id FROM Artist WHERE name=?', [
+        'pop',
+      ]),
+      db.query('INSERT INTO Artist (name, genre) VALUES(?, ?)', [
         'Dave Brubeck',
-      ]);
-  
-      await Promise.all([
-        db.query('INSERT INTO Album(album, year, artistId) VALUES(?,?,?)', [
-          'Innerspeaker',
-          2010,
-          tame_impala.id,
-        ]),
-        db.query('INSERT INTO Album(album, year, artistId) VALUES(?,?,?)', [
-          'light Years',
-          2000,
-          kylie.id,
-        ]),
-        db.query('INSERT INTO Album(album, year, artistId) VALUES(?,?,?)', [
-          'Time Out',
-          1995,
-          dave.id,
-        ]),
-      ]);
-      [albums] = await db.query('SELECT * FROM Album')
-    });
-  
-    afterEach(async () => {
-      await db.query('DELETE FROM Album')
-      await db.query('DELETE FROM Artist');
-      await db.close();
-    });
+        'jazz',
+      ]),
+    ]);
+
+    const [[tame_impala]] = await db.query(
+      'SELECT id FROM Artist WHERE name=?',
+      ['Tame Impala']
+    );
+    const [[kylie]] = await db.query('SELECT id FROM Artist WHERE name=?', [
+      'Kylie Minogue',
+    ]);
+    const [[dave]] = await db.query('SELECT id FROM Artist WHERE name=?', [
+      'Dave Brubeck',
+    ]);
+
+    await Promise.all([
+      db.query('INSERT INTO Album(album, year, artistId) VALUES(?,?,?)', [
+        'Innerspeaker',
+        2010,
+        tame_impala.id,
+      ]),
+      db.query('INSERT INTO Album(album, year, artistId) VALUES(?,?,?)', [
+        'light Years',
+        2000,
+        kylie.id,
+      ]),
+      db.query('INSERT INTO Album(album, year, artistId) VALUES(?,?,?)', [
+        'Time Out',
+        1995,
+        dave.id,
+      ]),
+    ]);
+    [albums] = await db.query('SELECT * FROM Album');
+  });
+
+  afterEach(async () => {
+    await db.query('DELETE FROM Album');
+    await db.query('DELETE FROM Artist');
+    await db.close();
+  });
 
   describe('/album/:albumId', () => {
     describe('DELETE', () => {
@@ -69,9 +69,10 @@ describe('delete artist', () => {
 
         expect(res.status).to.equal(200);
 
-        const [
-          [deletedAlbumRecord],
-        ] = await db.query('SELECT * FROM Album WHERE id = ?', [album.id]);
+        const [[deletedAlbumRecord]] = await db.query(
+          'SELECT * FROM Album WHERE id = ?',
+          [album.id]
+        );
 
         expect(!!deletedAlbumRecord).to.be.false;
       });

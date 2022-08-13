@@ -25,9 +25,9 @@ describe('update album', () => {
     ]);
 
     const [[tame_impala]] = await db.query(
-      'SELECT id FROM Artist WHERE name=?', [
-        'Tame Impala'
-      ]);
+      'SELECT id FROM Artist WHERE name=?',
+      ['Tame Impala']
+    );
     const [[kylie]] = await db.query('SELECT id FROM Artist WHERE name=?', [
       'Kylie Minogue',
     ]);
@@ -52,11 +52,11 @@ describe('update album', () => {
         dave.id,
       ]),
     ]);
-    [albums] = await db.query('SELECT * FROM Album')
+    [albums] = await db.query('SELECT * FROM Album');
   });
 
   afterEach(async () => {
-    await db.query('DELETE FROM Album')
+    await db.query('DELETE FROM Album');
     await db.query('DELETE FROM Artist');
     await db.close();
   });
@@ -71,9 +71,10 @@ describe('update album', () => {
 
         expect(res.status).to.equal(200);
 
-        const [
-          [newAlbumRecord],
-        ] = await db.query('SELECT * FROM Album WHERE id = ?', [album.id]);
+        const [[newAlbumRecord]] = await db.query(
+          'SELECT * FROM Album WHERE id = ?',
+          [album.id]
+        );
 
         expect(newAlbumRecord.album).to.equal('new name');
       });

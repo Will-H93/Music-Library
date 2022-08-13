@@ -25,9 +25,9 @@ describe('read album', () => {
     ]);
 
     const [[tame_impala]] = await db.query(
-      'SELECT id FROM Artist WHERE name=?', [
-        'Tame Impala'
-      ]);
+      'SELECT id FROM Artist WHERE name=?',
+      ['Tame Impala']
+    );
     const [[kylie]] = await db.query('SELECT id FROM Artist WHERE name=?', [
       'Kylie Minogue',
     ]);
@@ -52,7 +52,9 @@ describe('read album', () => {
         dave.id,
       ]),
     ]);
-    [albums] = await db.query('SELECT Album.id, Album.album, Album.year, Artist.name, Artist.genre FROM Album LEFT JOIN Artist ON Album.ArtistId = Artist.id')
+    [albums] = await db.query(
+      'SELECT Album.id, Album.album, Album.year, Artist.name, Artist.genre FROM Album LEFT JOIN Artist ON Album.ArtistId = Artist.id'
+    );
   });
 
   afterEach(async () => {
@@ -94,5 +96,4 @@ describe('read album', () => {
       });
     });
   });
-
 });

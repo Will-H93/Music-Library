@@ -11,9 +11,7 @@ The project implements RESTful routes and allows users to perform CRUD (Create, 
 - Pull a MySQL image and run the container via Docker
 - Clone this repo
 - Change in to repo directory
-- Install express - `npm i -S express`
-- Install nodemon as a dev dependency - `npm i -D nodemon` and add it to your package.json start script
-- Install mocha, chai and supertest as dev dependencies - `npm i -D mocha chai supertest` for Test Driven Development
+- Run npm install
 - Create a .env file and add local variables:
   - DB_PASSWORD
   - DB_NAME

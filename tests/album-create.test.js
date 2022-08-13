@@ -9,11 +9,11 @@ describe('create album', () => {
 
   beforeEach(async () => {
     db = await getDb();
-    await db.query("INSERT INTO Artist(name, genre) VALUES(?,?)", [
-      "Paramore",
-      "rock",
+    await db.query('INSERT INTO Artist(name, genre) VALUES(?,?)', [
+      'Paramore',
+      'rock',
     ]);
-    [[artist]] = await db.query("SELECT * FROM Artist");
+    [[artist]] = await db.query('SELECT * FROM Artist');
   });
 
   afterEach(async () => {
@@ -25,19 +25,16 @@ describe('create album', () => {
     describe('POST', () => {
       it('creates a new album in the database', async () => {
         const artistId = artist.id;
-        const res = await request(app)
-          .post(`/artist/${artistId}/album`)
-          .send({
-            album: 'Brand New Eyes',
-            year: 2009,
-           });
-        
+        const res = await request(app).post(`/artist/${artistId}/album`).send({
+          album: 'Brand New Eyes',
+          year: 2009,
+        });
+
         expect(res.status).to.equal(201);
 
         const [[albumEntries]] = await db.query(
-          `SELECT * FROM Album WHERE ArtistId = ?`, [
-            artistId
-          ]
+          `SELECT * FROM Album WHERE ArtistId = ?`,
+          [artistId]
         );
 
         expect(albumEntries.album).to.equal('Brand New Eyes');

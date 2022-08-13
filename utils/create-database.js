@@ -2,7 +2,6 @@ const mysql = require('mysql2/promise');
 
 const path = require('path');
 
-
 const args = process.argv.slice(2)[0];
 
 const envFile = args === 'test' ? '../.env.test' : '../.env';
@@ -15,7 +14,6 @@ const { DB_PASSWORD, DB_NAME, DB_USER, DB_HOST, DB_PORT } = process.env;
 
 const setUpDatabase = async () => {
   try {
-
     const db = await mysql.createConnection({
       host: DB_HOST,
       user: DB_USER,
@@ -39,7 +37,6 @@ const setUpDatabase = async () => {
       REFERENCES Artist (id)
     )`);
     db.end();
-
   } catch (err) {
     console.log(
       `Your environment variables might be wrong. Please double check .env file`

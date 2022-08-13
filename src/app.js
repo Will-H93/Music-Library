@@ -4,10 +4,10 @@ const albumRoute = require('./routes/album');
 
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.use('/', artistRoute);
 
-app.use('/', albumRoute)
+app.use('/', albumRoute);
 
 module.exports = app;
