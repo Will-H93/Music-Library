@@ -11,7 +11,7 @@ The project implements RESTful routes and allows users to perform CRUD (Create, 
 - Install [Docker Desktop](https://docs.docker.com/get-docker/) if you don't already have it.
 - With the Docker engine running, pull a MySQL image using the command below in your terminal:
 
-`docker run -d -p 3307:3306 --name music_library_mysql -e MYSQL_ROOT_PASSWORD=password`
+`docker run -d -p *your port map* --name music_library_mysql -e MYSQL_ROOT_PASSWORD=*your_password*`
 
 - Start the container in Docker Desktop (or the terminal if you prefer)
 - Clone this repo
